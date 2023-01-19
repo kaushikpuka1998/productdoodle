@@ -1,6 +1,7 @@
 package com.kgstrivers.productdoodle.Controllers;
 
 import com.kgstrivers.productdoodle.DTO.OrderRequest;
+import com.kgstrivers.productdoodle.DTO.SingleuserProductDetails;
 import com.kgstrivers.productdoodle.DTO.UsersOrderResponse;
 import com.kgstrivers.productdoodle.Model.Order;
 import com.kgstrivers.productdoodle.Model.Product;
@@ -41,6 +42,12 @@ public class OrderController{
     Optional<List<UsersOrderResponse>> getlistofusersorder(@PathVariable int id)
     {
         return userRepository.findalluserorder(id);
+    }
+
+    @GetMapping("/getorderdetailsbyuser/{id}")
+    Optional<List<SingleuserProductDetails>> getlistofusersorderdetails(@PathVariable int id)
+    {
+        return userRepository.findallorderDeatils(id);
     }
     @GetMapping("/allorder")
     public List<User> findAllOrder()
