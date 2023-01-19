@@ -15,6 +15,6 @@ public interface CustomerRepository extends JpaRepository<User,Integer> {
     Optional<List<UsersOrderResponse>> findalluserorder(int user_id);
 
 
-    @Query( "SELECT new com.kgstrivers.productdoodle.DTO.SingleuserProductDetails(g.product_id,g.quantit2y,u.id,p.name) from User u JOIN u.user_Order g on  u.id = ?1 JOIN Product p on g.product_id = p.id ")
+    @Query( "SELECT new com.kgstrivers.productdoodle.DTO.SingleuserProductDetails(g.product_id,g.quantity,u.id,p.name) from User u JOIN u.user_Order g on  u.id = ?1 JOIN Product p on g.product_id = p.id ")
     Optional<List<SingleuserProductDetails>> findallorderDeatils(int user_id);
 }
