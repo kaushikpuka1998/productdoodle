@@ -1,16 +1,18 @@
 package com.kgstrivers.productdoodle.Controllers;
 
 import com.kgstrivers.productdoodle.DTO.OrderRequest;
+import com.kgstrivers.productdoodle.DTO.UsersOrderResponse;
+import com.kgstrivers.productdoodle.Model.Order;
+import com.kgstrivers.productdoodle.Model.Product;
 import com.kgstrivers.productdoodle.Model.User;
+import com.kgstrivers.productdoodle.Repository.CustomerRepository;
+import com.kgstrivers.productdoodle.Repository.OrderRepository;
 import com.kgstrivers.productdoodle.Repository.ProductRepository;
-import com.kgstrivers.productdoodle.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class OrderController{
@@ -19,7 +21,9 @@ public class OrderController{
     @Autowired
     ProductRepository productRepository;
     @Autowired
-    UserRepository userRepository;
+    OrderRepository orderRepository;
+    @Autowired
+    CustomerRepository userRepository;
     @GetMapping("/welcome")
     public String welcome()
     {
@@ -33,6 +37,11 @@ public class OrderController{
 
     }
 
+    @GetMapping("/getorderbyuser/{id}")
+    Optional<List<UsersOrderResponse>> getlistofusersorder(@PathVariable int id)
+    {
+        return userRepository.findalluserorder(id);
+    }
     @GetMapping("/allorder")
     public List<User> findAllOrder()
     {

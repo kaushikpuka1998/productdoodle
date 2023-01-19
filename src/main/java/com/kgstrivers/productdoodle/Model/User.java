@@ -22,7 +22,7 @@ public class User {
     private int gender;
     private int age;
     @OneToMany(targetEntity = Order.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "User_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
     private List<Order> user_Order;
 
 }
