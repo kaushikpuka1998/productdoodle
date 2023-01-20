@@ -2,10 +2,7 @@ package com.kgstrivers.productdoodle.Controllers;
 
 import com.kgstrivers.productdoodle.DTO.UserRegsitrationRequest;
 import com.kgstrivers.productdoodle.DTO.UsersOrderResponse;
-import com.kgstrivers.productdoodle.Model.AuthenticationRequest;
-import com.kgstrivers.productdoodle.Model.AuthenticationResponse;
-import com.kgstrivers.productdoodle.Model.LoginRequest;
-import com.kgstrivers.productdoodle.Model.UserRegistration;
+import com.kgstrivers.productdoodle.Model.*;
 import com.kgstrivers.productdoodle.Repository.CustomerRepository;
 import com.kgstrivers.productdoodle.Repository.UserRegistrationRepository;
 import com.kgstrivers.productdoodle.Utils.JwtUtils;
@@ -69,10 +66,11 @@ public class UserController {
 
 
     @PostMapping("/loginuser")
-    public String loginuser(@RequestBody LoginRequest loginRequest)
+    public ResponseEntity<?>  loginuser(@RequestBody LoginRequest loginRequest)
     {
+        String value = userLoginService.loginservice(loginRequest);
 
-        return userLoginService.loginservice(loginRequest);
+        return ResponseEntity.ok(new LoginResponse(value));
     }
 
 }
