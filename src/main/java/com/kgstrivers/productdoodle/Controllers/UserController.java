@@ -4,11 +4,13 @@ import com.kgstrivers.productdoodle.DTO.UserRegsitrationRequest;
 import com.kgstrivers.productdoodle.DTO.UsersOrderResponse;
 import com.kgstrivers.productdoodle.Model.AuthenticationRequest;
 import com.kgstrivers.productdoodle.Model.AuthenticationResponse;
+import com.kgstrivers.productdoodle.Model.LoginRequest;
 import com.kgstrivers.productdoodle.Model.UserRegistration;
 import com.kgstrivers.productdoodle.Repository.CustomerRepository;
 import com.kgstrivers.productdoodle.Repository.UserRegistrationRepository;
 import com.kgstrivers.productdoodle.Utils.JwtUtils;
 import com.kgstrivers.productdoodle.Utils.MyUserDetailsService;
+import com.kgstrivers.productdoodle.Utils.UserLoginService;
 import com.kgstrivers.productdoodle.Utils.UserRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,9 +34,10 @@ public class UserController {
     UserRegistrationService userRegistrationService;
 
     @Autowired
+    UserLoginService userLoginService;
+
+    @Autowired
     MyUserDetailsService myUserDetailsService;
-
-
 
     @Autowired
     JwtUtils jwtUtils;
@@ -61,6 +64,15 @@ public class UserController {
     {
 
         return userRegistrationService.registration(userRegistration);
+    }
+
+
+
+    @PostMapping("/loginuser")
+    public String loginuser(@RequestBody LoginRequest loginRequest)
+    {
+
+        return userLoginService.loginservice(loginRequest);
     }
 
 }
